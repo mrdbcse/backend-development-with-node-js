@@ -1,1 +1,56 @@
-# backend-development-with-node-js
+# Backend Development with Node.js
+
+- Node.js Fundamentals & Module System
+- NPM & Package Management
+- Core Modules (Path, File System, HTTP)
+- Asynchronous Programming & Event-Driven Architecture
+- Express.js for Web Apps & RESTful APIs
+- Template Engines (EJS)
+- Database Integration with MongoDB & Mongoose
+- Authentication, Authorization & JWT
+- File Uploads with Multer & Cloudinary
+- Real-time Apps with Socket.io
+- Deployment (Render, Vercel)
+- GraphQL APIs
+- TypeScript in Node.js Development
+- Book Store API (CRUD operations)
+- Real-time Chat Application
+- Node.js Concepts
+- Express.js and API Design
+- Redis
+- RabbitMQ
+- Docker
+- CI/CD (GitHub Actions)
+- VPS Hosting
+- Social Media App Microservices Overview
+- API Gateway Service
+- Identity Service
+- Post Service
+- Search Service
+- Message Queue Service
+- Media Service
+- PostgreSQL
+- Prisma
+- Nest JS
+- Bun
+- Hono
+- Prometheus
+- Grafana
+
+### NestJS
+
+- Introduction & Nest CLI setup
+- Folder structure deep dive
+- Modules, Controllers, Services explained
+- First API route + creating and using multiple modules
+- Environment management with .env and @nestjs/config
+- RESTful APIs: CRUD, DTOs, validation
+- Database connection with PostgreSQL & TypeORM
+- Authentication: JWT, bcrypt, Auth Guards
+- Role-Based Access Control (RBAC)
+- Rate limiting & security best practices
+- Pagination, filtering & meta response structure
+- Caching with in-memory & Redis
+- File uploads & Cloudinary integration
+- Event-driven development with @nestjs/event-emitter
+- Logging, interceptors, middleware, performance tracking
