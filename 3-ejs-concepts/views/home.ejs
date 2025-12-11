@@ -1,0 +1,10 @@
+<%- include("components/header.ejs") %>
+
+<h1>Welcome to the Home Page</h1>
+<label for="users">List of users</label>
+
+<ul>
+  <% users.forEach(user => { %>
+  <li>User: <%= user.name%></li>
+  <% }) %>
+</ul>
