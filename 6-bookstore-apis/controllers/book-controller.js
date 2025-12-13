@@ -2,7 +2,7 @@ const Book = require("../models/book");
 
 const getAllBooks = async (req, res) => {
   try {
-    const allBooks = await Book.find({});
+    const allBooks = await Book.find({}).sort({ createdAt: -1 });
     console.log("Response: ", allBooks);
 
     if (allBooks?.length > 0) {
