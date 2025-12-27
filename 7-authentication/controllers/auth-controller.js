@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
@@ -70,13 +72,70 @@ const loginUser = async (req, res) => {
     }
 
     const isPasswordMatch = await bcrypt.compare(password, user.password);
+    console.log("isPasswordMatch:", isPasswordMatch);
+
     if (!isPasswordMatch) {
       res
         .status(400)
         .json({ success: false, message: "Invalid credentials", data: null });
     }
 
-    const accessToken = jwt.sign();
+    const accessToken = jwt.sign(
+      {
+        userId: user._id,
+        usrname: user.username,
+        role: user.role,
+      },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: "30m" }
+    );
+    console.log("accessToken:", accessToken);
+
+    res.status(200).json({
+      success: true,
+      message: "Logged in successfully",
+      data: { accessToken },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: false,
+      message: "Some problem occured! Please try again",
+      data: null,
+    });
+  }
+};
+
+const changePassword = async (req, res) => {
+  try {
+    const userId = req.userInfo.userId;
+    const { oldpassword, newPassword } = req.body;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      res
+        .status(400)
+        .json({ success: false, message: "User not found", data: null });
+    }
+
+    const isPasswordMatch = await bcrypt.compare(oldpassword, user.password);
+
+    if (!isPasswordMatch) {
+      res.status(400).json({
+        status: false,
+        message: "Old password is incorrect! Please try again",
+      });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const newHashedPassword = await bcrypt.hash(newHashedPassword, salt);
+
+    user.password = newHashedPassword;
+    await user.save();
+
+    res
+      .status(200)
+      .json({ status: true, message: "Password updated successfully!" });
   } catch (error) {
     console.error(error);
     res.status(500).json({
